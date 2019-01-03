@@ -15,6 +15,18 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
+  // console.log(output);
+  var tempOutput;
+
+  if(output !== null)
+  {
+    tempOutput = output;
+  }
+  if(output === null)
+  {
+    output === tempOutput;
+  }
+
     output = jbuilder.encode(function(json) {
 
      json.set('header', function(json) {
@@ -106,18 +118,9 @@ router.post('/', function(req, res, next) {
        });
      });
    });
-   // console.log(output);
-   var tempOutput;
-   fs.writeFileSync('cv.json', output);
-   if(output !== null)
-   {
-     tempOutput = output;
-   }
-   if(output === null)
-   {
-     output === tempOutput;
-   }
 
+   console.log("____________________OUTPUT___________________",output);
+   fs.writeFileSync('cv.json', output);
   // console.log(output);
   console.log("req body",req.body.theme);
 
@@ -134,7 +137,11 @@ router.post('/', function(req, res, next) {
   {
     console.log("-----------SETTING THEME FOR THE SECOND TIME------------------------");
     theme = req.body.theme;
+    console.log("_________TEMP---------",tempOutput);
+    output=tempOutput;
+    console.log("____________________OUTPUT_____2______________",output);
   }
+  console.log("____________________OUTPUT___3________________",output);
 /*when the second request is made this makes req.body.theme undefined so it will store the value in it */
   if (theme !== null && !(req.body.theme))
   {
