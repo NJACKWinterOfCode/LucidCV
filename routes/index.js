@@ -14,8 +14,7 @@ router.get('/', function(req, res, next) {
   var theme = null;
 
 router.post('/', function(req, res, next) {
-  if(output===null)
-  {
+
     output = jbuilder.encode(function(json) {
 
      json.set('header', function(json) {
@@ -108,9 +107,16 @@ router.post('/', function(req, res, next) {
      });
    });
    // console.log(output);
+   var tempOutput;
    fs.writeFileSync('cv.json', output);
-
-  }
+   if(output !== null)
+   {
+     tempOutput = output;
+   }
+   if(output === null)
+   {
+     output === tempOutput;
+   }
 
   // console.log(output);
   console.log("req body",req.body.theme);
